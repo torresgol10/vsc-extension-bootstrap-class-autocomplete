@@ -1,4 +1,5 @@
 {
+  "publisher": "torresgol10",
   "name": "bootstrap-class-autocomplete",
   "displayName": "Bootstrap Class Autocomplete",
   "description": "",
@@ -51,7 +52,6 @@
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
     "@types/node-fetch": "^2.6.2",
-    "@types/request": "^2.48.8",
     "@types/vscode": "^1.74.0",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
