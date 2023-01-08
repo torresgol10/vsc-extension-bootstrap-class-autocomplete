@@ -1,0 +1,67 @@
+{
+  "name": "bootstrap-class-autocomplete",
+  "displayName": "Bootstrap Class Autocomplete",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:bootstrap-class-autocomplete.bootstrapClassAutocomplete"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "bootstrap-class-autocomplete.bootstrapClassAutocomplete",
+        "title": "Bootstrap Class Autocomplete"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Bootstrap Autocomplete",
+      "properties": {
+        "bootstrapAutocomplete.version": {
+          "type": "string",
+          "default": "5.3",
+          "description": "Versión de Bootstrap",
+          "enum": [
+            "5.3","5.2","5.1","5.0","4.6","4.5","4.4","4.3","4.2","4.1","4.0","3.4","3.3"
+          ]
+        }
+      }
+    }
+  },
+  "configurationDefaults": {
+    "bootstrapAutocomplete.version": "5.3"
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/node-fetch": "^2.6.2",
+    "@types/request": "^2.48.8",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "@vscode/test-electron": "^2.2.0",
+    "eslint": "^8.28.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.1.0",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
+}
