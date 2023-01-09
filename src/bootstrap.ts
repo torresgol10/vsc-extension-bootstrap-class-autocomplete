@@ -10,10 +10,10 @@ export async function getBootstrapClasses(): Promise<string[]> {
 
     if (classesCache.length === 0) {
         // Primero buscamos el archivo CSS en el proyecto
-        const rootPath = vscode.workspace.rootPath;
+        const rootPath = vscode.workspace.workspaceFolders;
 
         if (rootPath !== undefined) {
-            const bootstrapPath = path.join(rootPath, 'node_modules', 'bootstrap', 'dist', 'css', 'bootstrap.css');
+            const bootstrapPath = path.join(rootPath[0].uri.fsPath, 'node_modules', 'bootstrap', 'dist', 'css', 'bootstrap.css');
             if (fs.existsSync(bootstrapPath)) {
                 // Si el archivo existe, leemos el contenido y extraemos las clases
                 const css = fs.readFileSync(bootstrapPath, 'utf8');
@@ -83,9 +83,14 @@ function getCachePath(): string {
 }
 
 function getCacheDir(): string {
-    let prefix = vscode.workspace.rootPath || '';
-    //const cacheDir = path.join(prefix, '.vscode', 'bootstrap-autocomplete');
-    const cacheDir = path.join(prefix, '.vscode');
+    let extensionsFolderPath = vscode.extensions.getExtension('bootstrap-class-autocomplete');
+    let extensionPath: string = '';
+
+    if (extensionsFolderPath) {
+        extensionPath = extensionsFolderPath.extensionPath;
+    }
+
+    const cacheDir = path.join(extensionPath, '.vscode');
     if (!fs.existsSync(cacheDir)) {
         fs.mkdirSync(cacheDir);
     }
