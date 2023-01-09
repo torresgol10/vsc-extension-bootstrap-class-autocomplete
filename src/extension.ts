@@ -16,7 +16,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	/* Cogido que salta cuando se cumple las condiciones */
 	const disposable = vscode.languages.registerCompletionItemProvider(
-		['html', "php", "ejs"],
+		['html', "php", "handlebars", "javascript", "typescript"],
 		{
 			async provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 				const lineText = document.lineAt(position).text;
