@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import fetch from 'node-fetch';
 import * as vscode from 'vscode';
+import { statusBarItem } from "./extension";
 
 const URL = "https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.css";
 
@@ -18,10 +19,12 @@ export async function getBootstrapClasses(): Promise<string[]> {
                 const packageJson = JSON.parse(fs.readFileSync(path.join(rootPath[0].uri.fsPath, 'node_modules', 'bootstrap', 'package.json'), 'utf8'));
                 if (packageJson!.config!.version_short) {
                     setBootstrapVersion(packageJson.config.version_short);
+                    statusBarItem.text = packageJson.config.version_short;
                 } else {
                     setBootstrapVersion(packageJson.version);
+                    statusBarItem.text = packageJson.version;
                 }
-                
+
                 // Si el archivo existe, leemos el contenido y extraemos las clases
                 const css = fs.readFileSync(bootstrapPath, 'utf8');
                 return extractClassesFromCss(css);

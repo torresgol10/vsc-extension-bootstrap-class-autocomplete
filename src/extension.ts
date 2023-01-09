@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { getBootstrapClasses, getBootstrapVersion, setBootstrapVersion } from './bootstrap';
 
 /* Status Bar Item como global para poder cambiar los valores*/
-let statusBarItem: vscode.StatusBarItem;
+export let statusBarItem: vscode.StatusBarItem;
 
 export function activate(context: vscode.ExtensionContext) {
 
