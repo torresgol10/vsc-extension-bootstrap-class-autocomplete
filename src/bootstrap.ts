@@ -15,6 +15,13 @@ export async function getBootstrapClasses(): Promise<string[]> {
         if (rootPath !== undefined) {
             const bootstrapPath = path.join(rootPath[0].uri.fsPath, 'node_modules', 'bootstrap', 'dist', 'css', 'bootstrap.css');
             if (fs.existsSync(bootstrapPath)) {
+                const packageJson = JSON.parse(fs.readFileSync(path.join(rootPath[0].uri.fsPath, 'node_modules', 'bootstrap', 'package.json'), 'utf8'));
+                if (packageJson!.config!.version_short) {
+                    setBootstrapVersion(packageJson.config.version_short);
+                } else {
+                    setBootstrapVersion(packageJson.version);
+                }
+                
                 // Si el archivo existe, leemos el contenido y extraemos las clases
                 const css = fs.readFileSync(bootstrapPath, 'utf8');
                 return extractClassesFromCss(css);
