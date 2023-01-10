@@ -3,7 +3,8 @@
   "name": "bootstrap-class-autocomplete",
   "displayName": "Bootstrap Class Autocomplete",
   "description": "",
-  "version": "0.0.5",
+  "repository": "https://github.com/torresgol10/vsc-extension-bootstrap-class-autocomplete",
+  "version": "0.0.6",
   "engines": {
     "vscode": "^1.74.0"
   },
@@ -11,7 +12,7 @@
     "Snippets"
   ],
   "activationEvents": [
-    "onCommand:bootstrap-class-autocomplete.bootstrapClassAutocomplete"
+    "*"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -27,17 +28,29 @@
       "properties": {
         "bootstrapAutocomplete.version": {
           "type": "string",
-          "default": "5.3",
+          "default": "5.3.0-alpha1",
           "description": "Versión de Bootstrap",
           "enum": [
-            "5.3","5.2","5.1","5.0","4.6","4.5","4.4","4.3","4.2","4.1","4.0","3.4","3.3"
+            "5.3.0-alpha1",
+            "5.2",
+            "5.1",
+            "5.0",
+            "4.6",
+            "4.5",
+            "4.4",
+            "4.3",
+            "4.2",
+            "4.1",
+            "4.0",
+            "3.4",
+            "3.3"
           ]
         }
       }
     }
   },
   "configurationDefaults": {
-    "bootstrapAutocomplete.version": "5.3"
+    "bootstrapAutocomplete.version": "5.3.0-alpha1"
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

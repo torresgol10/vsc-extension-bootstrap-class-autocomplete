@@ -1,8 +1,10 @@
 import * as vscode from 'vscode';
-import { getBootstrapClasses, getBootstrapVersion, setBootstrapVersion } from './bootstrap';
+import { getBootstrapClasses, getBootstrapVersion, setBootstrapVersion, removeCacheClasses } from './bootstrap';
 
 /* Status Bar Item como global para poder cambiar los valores*/
 export let statusBarItem: vscode.StatusBarItem;
+
+const lenguageSupport = ['html', "php", "handlebars", "javascript", "typescript"];
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -16,7 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	/* Cogido que salta cuando se cumple las condiciones */
 	const disposable = vscode.languages.registerCompletionItemProvider(
-		['html', "php", "handlebars", "javascript", "typescript"],
+		lenguageSupport,
 		{
 			async provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 				const lineText = document.lineAt(position).text;
@@ -56,12 +58,15 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 }
 
-export function deactivate() { }
+export function deactivate() {
+	console.log("Ha entrado en el desactivate");
+	removeCacheClasses();
+}
 
 
 export function selectBootstrapVersion() {
 	/* Versiones disponibles para seleccionar */
-	const versionList5 = ["5.3", "5.2", "5.1", "5.0"];
+	const versionList5 = ["5.3.0-alpha1", "5.2", "5.1", "5.0"];
 	const versionList4 = ["4.6", "4.5", "4.4", "4.3", "4.2", "4.1", "4.0"];
 	const versionList3 = ["3.4", "3.3"];
 
@@ -80,7 +85,7 @@ export function selectBootstrapVersion() {
 
 	version.onDidChangeSelection(selection => {
 		if (selection[0]) {
-			/* Cambiamos a la version que hemos seleccionado en el Status Bar */ 
+			/* Cambiamos a la version que hemos seleccionado en el Status Bar */
 			statusBarItem.text = selection[0].label;
 
 			/* Cambiamos la version de Bootstrap seleccionada */

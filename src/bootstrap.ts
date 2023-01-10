@@ -1,3 +1,4 @@
+import * as os from 'os';
 import * as fs from 'fs';
 import * as path from 'path';
 import fetch from 'node-fetch';
@@ -52,7 +53,7 @@ export async function getBootstrapClasses(): Promise<string[]> {
 }
 
 function extractClassesFromCss(css: string): string[] {
-    const classRegex = /\.(?!\d)([\w-]+)/g;
+    const classRegex = /(\W)\.(?!\d)([\w-]+)/g;
     const classes: Set<string> = new Set();
     let match;
     while ((match = classRegex.exec(css))) {
@@ -72,17 +73,33 @@ export function setBootstrapVersion(version: string) {
     config.update("version", version, true);
 }
 
-function writeCacheClasses(classes: string[]) {
+function writeCacheClasses(classes: string[]): void {
     const cachePath = getCachePath();
     fs.writeFileSync(cachePath, JSON.stringify(classes));
 }
 
 function getCacheClasses(): string[] {
     const cachePath = getCachePath();
+
     if (fs.existsSync(cachePath)) {
         return JSON.parse(fs.readFileSync(cachePath, 'utf-8'));
     }
+
     return [];
+}
+
+export function removeCacheClasses(): void {
+    const cachePathDir = getCacheDir();
+
+    fs.readdir(cachePathDir, (err, files) => {
+        if (err) {
+            throw err;
+        }
+
+        for (const file of files) {
+            fs.unlinkSync(cachePathDir + file);
+        }
+    });
 }
 
 function getCachePath(): string {
@@ -93,17 +110,23 @@ function getCachePath(): string {
 }
 
 function getCacheDir(): string {
-    let extensionsFolderPath = vscode.extensions.getExtension('bootstrap-class-autocomplete');
-    let extensionPath: string = '';
+    let cachePath: string;
 
-    if (extensionsFolderPath) {
-        extensionPath = extensionsFolderPath.extensionPath;
+    if (process.platform === 'win32') {
+        cachePath = path.join(os.homedir(), 'AppData', 'Local', 'bootstrap-class-autocomplete', 'cache');
+    } else if (process.platform === 'darwin') {
+        cachePath = path.join(os.homedir(), 'Library', 'Caches', 'bootstrap-class-autocomplete');
+    } else {
+        cachePath = path.join(os.homedir(), '.cache', 'bootstrap-class-autocomplete');
     }
 
-    const cacheDir = path.join(extensionPath, '.vscode');
-    if (!fs.existsSync(cacheDir)) {
-        fs.mkdirSync(cacheDir);
+    try {
+        fs.mkdirSync(cachePath, { recursive: true });
+    } catch (err: any) {
+        if (err.code !== 'EEXIST') {
+            console.error(`Failed to create cache directory: ${err.message}`);
+        }
     }
 
-    return cacheDir;
+    return cachePath;
 }
