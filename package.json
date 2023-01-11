@@ -4,7 +4,7 @@
   "displayName": "Bootstrap Class Autocomplete",
   "description": "",
   "repository": "https://github.com/torresgol10/vsc-extension-bootstrap-class-autocomplete",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "engines": {
     "vscode": "^1.74.0"
   },

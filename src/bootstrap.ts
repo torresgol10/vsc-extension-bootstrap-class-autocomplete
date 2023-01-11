@@ -53,7 +53,7 @@ export async function getBootstrapClasses(): Promise<string[]> {
 }
 
 function extractClassesFromCss(css: string): string[] {
-    const classRegex = /(\W)\.(?!\d)([\w-]+)/g;
+    const classRegex = /\.(?!\d)([\w-]+)/g;
     const classes: Set<string> = new Set();
     let match;
     while ((match = classRegex.exec(css))) {
