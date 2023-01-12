@@ -2,14 +2,18 @@
   "publisher": "torresgol10",
   "name": "bootstrap-class-autocomplete",
   "displayName": "Bootstrap Class Autocomplete",
-  "description": "",
+  "description": "Quickly autocomplete Bootstrap classes on VS Code",
   "repository": "https://github.com/torresgol10/vsc-extension-bootstrap-class-autocomplete",
-  "version": "0.0.7",
+  "icon": "logo.png",
+  "version": "0.0.8",
   "engines": {
     "vscode": "^1.74.0"
   },
   "categories": [
     "Snippets"
+  ],
+  "keywords": [
+    "Bootstrap "
   ],
   "activationEvents": [
     "*"
