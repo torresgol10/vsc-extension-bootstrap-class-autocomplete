@@ -4,7 +4,7 @@ import { getBootstrapClasses, getBootstrapVersion, setBootstrapVersion, removeCa
 /* Status Bar Item como global para poder cambiar los valores*/
 export let statusBarItem: vscode.StatusBarItem;
 
-const lenguageSupport = ['html', "php", "handlebars", "javascript", "typescript"];
+const lenguageSupport = ['html', "php", "handlebars", "javascript", "javascriptreact", "typescript", "typescriptreact"];
 
 export function activate(context: vscode.ExtensionContext) {
 
