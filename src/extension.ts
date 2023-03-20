@@ -22,9 +22,8 @@ export function activate(context: vscode.ExtensionContext) {
 		{
 			async provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 				const lineText = document.lineAt(position).text;
-				const classNameStart = lineText.lastIndexOf('class=', position.character);
 
-				if (classNameStart === -1) {
+				if (lineText.lastIndexOf('class=', position.character) === -1 && lineText.lastIndexOf('className=', position.character) === -1) {
 					return undefined;
 				}
 
@@ -59,7 +58,6 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {
-	console.log("Ha entrado en el desactivate");
 	removeCacheClasses();
 }
 

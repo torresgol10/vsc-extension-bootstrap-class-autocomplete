@@ -5,7 +5,7 @@ import fetch from 'node-fetch';
 import * as vscode from 'vscode';
 import { statusBarItem } from "./extension";
 
-const URL = "https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.css";
+let url = "https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.css";
 
 export async function getBootstrapClasses(): Promise<string[]> {
     const classesCache = getCacheClasses();
@@ -34,7 +34,6 @@ export async function getBootstrapClasses(): Promise<string[]> {
 
         // Si no hemos encontrado el archivo en el proyecto, descargamos el archivo desde Internet
         const version = getBootstrapVersion();
-        let url = URL;
 
         if (version !== 'latest') {
             url = url.replace('latest', version);
