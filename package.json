@@ -55,7 +55,7 @@
     }
   },
   "configurationDefaults": {
-    "bootstrapAutocomplete.version": "5.3.0-alpha1"
+    "bootstrapAutocomplete.version": "5.3.0-alpha2"
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
