@@ -1,6 +1,9 @@
 on:
+  push:
+    branches:
+    - main
   workflow_dispatch:
-  
+
   - name: Publish
     run: npm run deploy
     env:
