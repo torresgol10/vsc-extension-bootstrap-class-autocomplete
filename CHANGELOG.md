@@ -2,6 +2,12 @@
 
 All notable changes to the "bootstrap-class-autocomplete" extension will be documented in this file.
 
+## [0.1.3] - 2023-03-28
+
+### Bug
+
+- We remove the "-" as option activation ( Problems React )
+
 ## [0.1.2] - 2023-03-28
 
 ### Added
