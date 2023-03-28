@@ -2,6 +2,12 @@
 
 All notable changes to the "bootstrap-class-autocomplete" extension will be documented in this file.
 
+## [0.1.2] - 2023-03-28
+
+### Added
+
+- Add new version the Bootstrap (5.3.0-alpha2)
+
 ## [0.1.1] - 2023-03-20
 
 ### Added
