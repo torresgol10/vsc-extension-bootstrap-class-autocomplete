@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
-
-- name: Publish
-  run: npm run deploy
-  env:
-    VSCE_PAT: ${{ secrets.VSCE_PAT }}
+  
+  - name: Publish
+    run: npm run deploy
+    env:
+      VSCE_PAT: ${{ secrets.VSCE_PAT }}
