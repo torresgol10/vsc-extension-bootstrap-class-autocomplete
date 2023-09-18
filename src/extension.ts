@@ -63,7 +63,7 @@ export function deactivate() {
 
 export function selectBootstrapVersion() {
 	/* Versiones disponibles para seleccionar */
-	const versionList5 = ["5.3.0-alpha2", "5.3.0-alpha1", "5.2", "5.1", "5.0"];
+	const versionList5 = ["5.3.2", "5.3.1", "5.3.0", "5.2", "5.1", "5.0"];
 	const versionList4 = ["4.6", "4.5", "4.4", "4.3", "4.2", "4.1", "4.0"];
 	const versionList3 = ["3.4", "3.3"];
 
